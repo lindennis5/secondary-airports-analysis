@@ -1,0 +1,25 @@
+-- I m looking to list all secondary Canadian airports and count routes			
+SELECT source_airport, COUNT(*) AS total_routes			
+FROM canadaroutes			
+WHERE source_airport NOT IN ('YYZ', 'YVR', 'YUL')			
+GROUP BY source_airport			
+ORDER BY total_routes DESC;			
+--			
+-- I want to reliably exclude Canadian flights from the destination list, so I will remove my nine airports from the table			
+CREATE TABLE canadian_airports (			
+airport_code VARCHAR(10) PRIMARY KEY);			
+INSERT INTO canadian_airports (airport_code)			
+VALUES			
+('YYZ'), ('YVR'), ('YUL'),			
+('YYC'), ('YEG'), ('YWG'),			
+('YOW'), ('YHZ'), ('YZF'), ('YRT'), ('YQB'), ('YZV');			
+--			
+SELECT source_airport, destination_airport, airline, COUNT(*) AS num_routes			
+FROM canadaroutes			
+WHERE source_airport IN ('YYC','YEG','YWG','YOW','YHZ','YZF','YRT','YQB','YZV')			
+AND destination_airport NOT IN (SELECT airport_code FROM canadian_airports)			
+AND destination_airport NOT LIKE 'Y%'        			
+GROUP BY source_airport, destination_airport, airline			
+ORDER BY source_airport, num_routes DESC;			
+--			
+		
