@@ -1,6 +1,7 @@
 Read the full analysis on Medium: [International Connectivity of Canada’s Secondary Airports](https://medium.com/@dennislin2900/international-connectivity-of-canadas-secondary-airports-d03142f6a5a0)
 
 TL:DR
+
 🔍 Project Overview
 
 The project examines how secondary Canadian airports (beyond the major hubs of YYZ, YVR, and YUL) function in the international air travel network. It analyses:
